@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Code, ImageIcon, LayoutDashboard, MessageSquare, MusicIcon, Settings, VideoIcon } from "lucide-react";
 import { Montserrat } from "next/font/google";
+import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 
@@ -54,6 +55,7 @@ const routes = [
 ];
 
 const Sidebar = () => {
+  const pathname = usePathname();
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
@@ -68,7 +70,7 @@ const Sidebar = () => {
         <div className="space-y-1">
           {routes.map((route) => {
             return (
-              <Link href={route.href} key={route.href} className="text-md group flex p-3 w-full justify-start cursor-pointer hover:text-white hover:bg-white/10 transition">
+              <Link href={route.href} key={route.href} className={cn("text-md group flex p-3 w-full justify-start cursor-pointer rounded-lg hover:text-white hover:bg-white/10 transition", route.href === pathname ? "text-white bg-white/10" : "text-zinc-400")}>
                 <div className="flex items-center flex-1">
                   <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
                   {route.label}
