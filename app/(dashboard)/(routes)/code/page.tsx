@@ -26,15 +26,7 @@ const CodePage = () => {
 
   // Add every question & answer to this array
   // on every request to API - pass current & old messages
-  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([
-    { role: "user", content: "who invented atom bomb?" },
-    {
-      role: "assistant",
-      content:
-        "The atomic bomb was invented by a team of scientists, led by J. Robert Oppenheimer, as part of the Manhattan Project during World War II. While Oppenheimer is often credited with the development of the atomic bomb, it was a collaborative effort involving many scientists, including Enrico Fermi, Leo Szilard, and Edward Teller, among others.",
-    },
-    { role: "user", content: "when it used?" },
-  ]);
+  const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
   // React-hook
   const form = useForm<z.infer<typeof formSchema>>({
