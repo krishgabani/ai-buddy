@@ -1,6 +1,8 @@
-import { clerkClient } from "@clerk/nextjs";
+import { auth, clerkClient } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
+
+import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
 
 // OPEN-AI Configuration
 const configuration = new Configuration({
@@ -10,10 +12,11 @@ const openai = new OpenAIApi(configuration);
 
 export async function POST(req: Request) {
   try {
-    // const { userId } = auth();
-    const userId = (await clerkClient.users.getUserList()).map(
-      (user) => user.id
-    )[0];
+    const { userId } = auth();
+
+    // const userId = (await clerkClient.users.getUserList()).map(
+    //   (user) => user.id
+    // )[0];
 
     const body = await req.json();
 
@@ -39,11 +42,18 @@ export async function POST(req: Request) {
       return new NextResponse("Resolution is required", { status: 400 });
     }
 
+    const isFreeTrial = await checkApiLimit();
+    if (!isFreeTrial) {
+      return new NextResponse("Free trial has expired.", { status: 403 });
+    }
+
     const response = await openai.createImage({
       prompt,
       n: parseInt(amount),
       size: resolution,
     });
+
+    await increaseApiLimit();
 
     return NextResponse.json(response.data.data);
   } catch (error) {

@@ -2,11 +2,20 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Code, ImageIcon, LayoutDashboard, MessageSquare, MusicIcon, Settings, VideoIcon } from "lucide-react";
+import {
+  Code,
+  ImageIcon,
+  LayoutDashboard,
+  MessageSquare,
+  MusicIcon,
+  Settings,
+  VideoIcon,
+} from "lucide-react";
 import { Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import FreeCounter from "@/components/FreeCounter";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
@@ -54,7 +63,11 @@ const routes = [
   },
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+  apiLimitCount: number;
+}
+
+const Sidebar = ({ apiLimitCount }: SidebarProps) => {
   const pathname = usePathname();
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -70,7 +83,16 @@ const Sidebar = () => {
         <div className="space-y-1">
           {routes.map((route) => {
             return (
-              <Link href={route.href} key={route.href} className={cn("text-md group flex p-3 w-full justify-start cursor-pointer rounded-lg hover:text-white hover:bg-white/10 transition", route.href === pathname ? "text-white bg-white/10" : "text-zinc-400")}>
+              <Link
+                href={route.href}
+                key={route.href}
+                className={cn(
+                  "text-md group flex p-3 w-full justify-start cursor-pointer rounded-lg hover:text-white hover:bg-white/10 transition",
+                  route.href === pathname
+                    ? "text-white bg-white/10"
+                    : "text-zinc-400"
+                )}
+              >
                 <div className="flex items-center flex-1">
                   <route.icon className={cn("h-5 w-5 mr-3", route.color)} />
                   {route.label}
@@ -80,6 +102,7 @@ const Sidebar = () => {
           })}
         </div>
       </div>
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   );
 };

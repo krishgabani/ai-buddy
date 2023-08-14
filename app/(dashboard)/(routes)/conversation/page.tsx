@@ -60,6 +60,9 @@ const ConversationPage = () => {
     } catch (error: any) {
       console.log(error);
     } finally {
+
+      // It will rehydrate all server components
+      // free count will increase parallelly because of this
       router.refresh();
     }
   };
