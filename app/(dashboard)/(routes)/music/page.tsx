@@ -15,10 +15,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-model";
 
 const MusicPage = () => {
   const router = useRouter();
-
+  const proModal = useProModal();
   const [music, setMusic] = useState<string>();
 
   // React-hook
@@ -39,6 +40,9 @@ const MusicPage = () => {
       setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
+      if(error?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(error);
     } finally {
       router.refresh();

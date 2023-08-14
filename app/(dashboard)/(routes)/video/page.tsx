@@ -15,11 +15,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { formSchema } from "./constants";
+import { useProModal } from "@/hooks/use-pro-model";
 
 const VideoPage = () => {
   const router = useRouter();
-
+  const proModal = useProModal();
   const [video, setVideo] = useState<string>();
+
 
   // React-hook
   const form = useForm<z.infer<typeof formSchema>>({
@@ -39,6 +41,9 @@ const VideoPage = () => {
       setVideo(response.data[0]);
       form.reset();
     } catch (error: any) {
+      if(error?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(error);
     } finally {
       router.refresh();

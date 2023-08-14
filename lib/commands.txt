@@ -1,0 +1,9 @@
+For prisma
+
+npm i -D prisma
+npx prisma init
+npm i @prisma/client
+
+npx prisma db push
+npx prisma Generate
+npx prisma studio 

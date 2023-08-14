@@ -19,8 +19,10 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { formSchema } from "./constants";
 import { cn } from "@/lib/utils";
+import { useProModal } from "@/hooks/use-pro-model";
 
 const ConversationPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
 
   // Add every question & answer to this array
@@ -58,6 +60,9 @@ const ConversationPage = () => {
 
       form.reset();
     } catch (error: any) {
+      if(error?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(error);
     } finally {
 

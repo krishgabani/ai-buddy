@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Download, ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"; // from shadcn
+import Image from "next/image";
 
 import Heading from "@/components/Heading";
 import Empty from "@/components/Empty";
@@ -21,12 +22,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { amountOptions, formSchema, resolutionOptions } from "./constants";
 import { Card, CardFooter } from "@/components/ui/card";
-import Image from "next/image";
+import { amountOptions, formSchema, resolutionOptions } from "./constants";
+import { useProModal } from "@/hooks/use-pro-model";
 
 const ImagePage = () => {
   const router = useRouter();
+  const proModal = useProModal();
   const [images, setImages] = useState<string[]>([]);
 
   // React-hook
@@ -51,6 +53,9 @@ const ImagePage = () => {
       setImages(urls);
       form.reset();
     } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
       console.log(error);
     } finally {
       router.refresh();
