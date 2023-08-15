@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { VideoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"; // from shadcn
+import toast from "react-hot-toast";
 
 import Heading from "@/components/Heading";
 import Empty from "@/components/Empty";
@@ -43,6 +44,8 @@ const VideoPage = () => {
     } catch (error: any) {
       if(error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
       console.log(error);
     } finally {

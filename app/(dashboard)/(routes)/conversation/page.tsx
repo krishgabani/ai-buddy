@@ -8,6 +8,7 @@ import { MessageSquare } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"; // from shadcn
 import { ChatCompletionRequestMessage } from "openai";
+import { toast } from "react-hot-toast";
 
 import Heading from "@/components/Heading";
 import Empty from "@/components/Empty";
@@ -60,12 +61,13 @@ const ConversationPage = () => {
 
       form.reset();
     } catch (error: any) {
-      if(error?.response?.status === 403) {
+      if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
       console.log(error);
     } finally {
-
       // It will rehydrate all server components
       // free count will increase parallelly because of this
       router.refresh();

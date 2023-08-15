@@ -1,9 +1,19 @@
 For prisma
 
-npm i -D prisma
-npx prisma init
-npm i @prisma/client
+> npm i -D prisma
+> npx prisma init
+> npm i @prisma/client
 
-npx prisma db push
-npx prisma Generate
-npx prisma studio 
+> npx prisma generate
+> npx prisma db push
+> npx prisma studio 
+
+To reset entire database
+> npx prisma migrate reset
+----------------------------
+
+For stripe
+
+Download CLI
+> stripe login
+> stripe listen --forward-to localhost:3000/api/webhook     // have to run every time in test mode

@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"; // from shadcn
 import { ChatCompletionRequestMessage } from "openai";
 import ReactMarkdown from "react-markdown";
+import toast from "react-hot-toast";
 
 import Heading from "@/components/Heading";
 import Empty from "@/components/Empty";
@@ -63,6 +64,8 @@ const CodePage = () => {
     } catch (error: any) {
       if(error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("Something went wrong");
       }
       console.log(error);
     } finally {
