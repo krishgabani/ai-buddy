@@ -46,7 +46,7 @@ export async function GET() {
               name: "Ai Buddy Pro",
               description: "Unlimited AI Generations",
             },
-            unit_amount: 19900,
+            unit_amount: 49900,
             recurring: {
               interval: "month",
             },
