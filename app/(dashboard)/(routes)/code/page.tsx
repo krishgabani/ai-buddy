@@ -11,11 +11,11 @@ import { ChatCompletionRequestMessage } from "openai";
 import ReactMarkdown from "react-markdown";
 import toast from "react-hot-toast";
 
-import Heading from "@/components/Heading";
-import Empty from "@/components/Empty";
-import Loader from "@/components/Loader";
-import UserAvatar from "@/components/User-Avatar";
-import BotAvatar from "@/components/Bot-Avatar";
+import Heading from "@/components/heading";
+import Empty from "@/components/empty";
+import Loader from "@/components/loader";
+import UserAvatar from "@/components/user-avatar";
+import BotAvatar from "@/components/bot-avatar";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";

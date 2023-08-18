@@ -9,9 +9,9 @@ import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod"; // from shadcn
 import toast from "react-hot-toast";
 
-import Heading from "@/components/Heading";
-import Empty from "@/components/Empty";
-import Loader from "@/components/Loader";
+import Heading from "@/components/heading";
+import Empty from "@/components/empty";
+import Loader from "@/components/loader";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";

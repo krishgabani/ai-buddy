@@ -6,7 +6,7 @@ import { Montserrat } from "next/font/google";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import FreeCounter from "@/components/FreeCounter";
+import FreeCounter from "@/components/free-counter";
 import { routes } from "@/constants";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
