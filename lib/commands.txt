@@ -18,6 +18,15 @@ Download CLI
 > stripe login
 > stripe listen --forward-to localhost:3000/api/webhook     // have to run every time in test mode
 
--> vercel: for deployment following should be added in build of "package.json"
-    "postinstall": "prisma generate"
-    "build": "prisma generate && next build"
+deployment: Vercel
+    For Prisma
+    in build of "package.json"
+        "scripts": {
+            "build": "prisma generate && next build",
+            "postinstall": "prisma generate"
+        },
+
+    For Stripe 
+    -> add endpoint in webhook 
+    -> select events which we are listening
+    -> now update STRIPE_WEBHOOK_SECRET & NEXT_PUBLIC_APP_URL (.env) in vercel

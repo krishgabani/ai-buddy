@@ -7,12 +7,12 @@ import { checkSubscription } from "@/lib/subscription";
 const Navbar = async () => {
   const apiLimitCount = await getApiLimitCount();
   const isPro = await checkSubscription();
-  
+
   return (
     <div className="flex items-center p-4">
       <MobileSidebar apiLimitCount={apiLimitCount} isPro={isPro} />
       <div className="flex w-full justify-end">
-        <UserButton afterSignOutUrl="http://localhost:3000" />
+        <UserButton afterSignOutUrl={process.env.NEXT_PUBLIC_APP_URL} />
       </div>
     </div>
   );
