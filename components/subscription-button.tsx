@@ -6,6 +6,7 @@ import { Zap } from "lucide-react";
 import toast from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
+import LoadingSpinner from "./loading-spinner";
 
 interface SubscriptionButtonProps {
   isPro: boolean;
@@ -30,14 +31,18 @@ const SubscriptionButton = ({ isPro = false }: SubscriptionButtonProps) => {
 
   return (
     <>
-      <Button
-        disabled={loading}
-        variant={isPro ? "default" : "premium"}
-        onClick={onClick}
-      >
-        {isPro ? "Manage Subscription" : "Upgrade"}
-        {!isPro && <Zap className="w-4 h-4 ml-2 fill-white" />}
-      </Button>
+      {loading ? (
+        <LoadingSpinner />
+      ) : (
+        <Button
+          disabled={loading}
+          variant={isPro ? "default" : "premium"}
+          onClick={onClick}
+        >
+          {isPro ? "Manage Subscription" : "Upgrade"}
+          {!isPro && <Zap className="w-4 h-4 ml-2 fill-white" />}
+        </Button>
+      )}
     </>
   );
 };

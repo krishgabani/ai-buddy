@@ -26,7 +26,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
             <Image alt="Logo" src="/logo.png" width={50} height={50} />
           </div>
           <h1 className={cn("font-bold text-2xl pl-2", montserrat.className)}>
-            Ai-Buddy
+            Ai Buddy
           </h1>
         </Link>
         <div className="space-y-1">

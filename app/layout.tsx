@@ -6,11 +6,12 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ModalProvider } from "@/components/modal-provider";
 import { ToasterProvider } from "@/components/toaster-provider";
 import { CrispProvider } from "@/components/crisp-provider";
+import LoadingProvider from "@/components/loading-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ai-Buddy",
+  title: "Ai Buddy",
   description: "AI plateform to make your job easy.",
 };
 
@@ -26,7 +27,7 @@ export default function RootLayout({
         <body className={inter.className}>
           <ModalProvider />
           <ToasterProvider />
-          {children}
+          <LoadingProvider>{children}</LoadingProvider>
         </body>
       </html>
     </ClerkProvider>

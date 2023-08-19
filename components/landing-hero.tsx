@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
 import TypeWriterComponent from "typewriter-effect";
 
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 const font = Montserrat({
